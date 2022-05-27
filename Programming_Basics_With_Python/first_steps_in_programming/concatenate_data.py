@@ -1,0 +1,5 @@
+first = str(input())
+last = str(input())
+age = str(input())
+town = str(input())
+print(f"You are {first} {last}, a {age}-years old person from {town}.")
