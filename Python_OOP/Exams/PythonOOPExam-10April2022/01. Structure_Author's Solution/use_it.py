@@ -1,0 +1,56 @@
+from project.controller import Controller
+from project.player import Player
+from project.supply.drink import Drink
+from project.supply.food import Food
+
+controller = Controller()
+apple = Food("apple", 22)
+cheese = Food("cheese")
+juice = Drink("orange juice")
+water = Drink("water")
+first_player = Player('Peter', 15)
+second_player = Player('Lilly', 12, 94)
+print(controller.add_supply(cheese, apple, cheese, apple, juice, water, water))
+print(controller.add_player(first_player, second_player))
+print(controller.duel("Peter", "Lilly"))
+print(controller.add_player(first_player))
+print(controller.sustain("Lilly", "Drink"))
+first_player.stamina = 0
+print(controller.duel("Peter", "Lilly"))
+print(first_player)
+print(second_player)
+controller.next_day()
+print(controller)
+
+
+############MY TESTS ###########
+sep = lambda message,new_lines=1,symbols=10,sym="#": print(("\n" * new_lines) + (sym * symbols) + message.upper() + (sym * symbols), end = "\n" * new_lines)
+sep("the tests below are mine and mine only, beware",2,50)
+sep("supply tests")
+marmalad = Food("marmaladus",11)
+kompot = Drink("kompotus")
+print(marmalad.details(),kompot.details())
+sep("player tests")
+me = Player("Me",30,99)
+it = Player("It",12,31)
+SEan = Player("SEan",12,31)
+print(me,me.need_sustenance,sep="\n")
+sep("class controller",symbols=20)
+sep("add player")
+print(controller.add_player(first_player,it,me))
+sep("add supply")
+controller.supplies.clear()
+print(controller.add_supply(marmalad,marmalad))
+print(controller.add_supply(marmalad,marmalad,marmalad))
+print(controller.add_supply(kompot,kompot))
+print(controller.add_supply(kompot,kompot))
+sep("sustain")
+print(controller.sustain(SEan,"Food"))
+print(me)
+sep("duel")
+print(controller.duel("Me","It"))
+print(me,it,sep="\n")
+sep("next day")
+print(controller.next_day())
+print(controller)
+

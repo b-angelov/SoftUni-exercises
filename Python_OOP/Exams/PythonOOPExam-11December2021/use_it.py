@@ -1,0 +1,61 @@
+from project.common_functions import *
+
+from project.controller import Controller
+
+controller = Controller()
+print(controller.create_driver("Peter"))
+print(controller.create_car("SportsCar", "Porsche 718 Boxster", 470))
+print(controller.add_car_to_driver("Peter", "SportsCar"))
+print(controller.create_car("SportsCar", "Porsche 911", 580))
+print(controller.add_car_to_driver("Peter", "SportsCar"))
+print(controller.create_car("MuscleCar", "BMW ALPINA B7", 290))
+print(controller.create_car("MuscleCar", "Mercedes-Benz AMG GLA 45", 420))
+print(controller.create_driver("John"))
+print(controller.create_driver("Jack"))
+print(controller.create_driver("Kelly"))
+print(controller.add_car_to_driver("Kelly", "MuscleCar"))
+print(controller.add_car_to_driver("Jack", "MuscleCar"))
+print(controller.add_car_to_driver("John", "SportsCar"))
+print(controller.create_race("Christmas Top Racers"))
+print(controller.add_driver_to_race("Christmas Top Racers", "John"))
+print(controller.add_driver_to_race("Christmas Top Racers", "Jack"))
+print(controller.add_driver_to_race("Christmas Top Racers", "Kelly"))
+print(controller.add_driver_to_race("Christmas Top Racers", "Peter"))
+print(controller.start_race("Christmas Top Racers"))
+[print(d.name, d.number_of_wins) for d in controller.drivers]
+
+
+zip_current_project()
+
+sep("my tests",symbols=50)
+sep("car")
+print(controller.create_car("MuscleCar","My Troshka 2007",450))
+print(controller.cars[-1].is_taken)
+sep("driver")
+print(controller.create_driver("Leptikon Karabramchiev"))
+print(controller.drivers[-1].car)
+print(controller.drivers[-1].number_of_wins)
+sep("race")
+print(controller.create_race("Moose Open"))
+print(controller.races[-1].drivers)
+sep("controller",symbols=30)
+sep("create car")
+print(controller.create_car("SportsCar","My Troshka 2007-s",521))
+print(controller.cars[-1])
+sep("create driver")
+print(controller.create_race("Moose Open Wide"))
+sep("add car to driver")
+# controller.cars.clear()
+print(controller.add_car_to_driver("Leptikon Karabramchiev","MuscleCar"))
+print(controller.add_car_to_driver("Leptikon Karabramchiev","SportsCar"))
+# print(controller.add_car_to_driver("Leptikon Karabramchiev","MuscleCar"))
+sep("add driver to race")
+# controller.drivers[-1].car = None
+print(controller.add_driver_to_race("Moose Open","Leptikon Karabramchiev"))
+print(controller.add_driver_to_race("Moose Open","Leptikon Karabramchiev"))
+print(controller.add_driver_to_race("Moose Open","Kelly"))
+print(controller.add_driver_to_race("Moose Open","John"))
+sep("start race")
+print(controller.start_race("Moose Open"))
+[print(d.name, d.number_of_wins) for d in controller.drivers]
+

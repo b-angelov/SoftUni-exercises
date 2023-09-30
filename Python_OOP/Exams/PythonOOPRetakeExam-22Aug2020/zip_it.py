@@ -1,0 +1,2 @@
+from common_functions import zip_current_project
+zip_current_project()
