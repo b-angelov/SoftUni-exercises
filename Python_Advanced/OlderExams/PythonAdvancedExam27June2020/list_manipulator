@@ -1,0 +1,23 @@
+def list_manipulator(lst,*args):
+    def add(what,args):
+        nonlocal lst
+        if what == "beginning":
+            lst = list(args) + lst
+        else:
+            lst += list(args)
+
+    def remove(what,args):
+        nonlocal lst
+        if what == "beginning":
+            if args:
+                lst = lst[args[0]:]
+            else:
+                lst = lst[1:]
+        else:
+            if args:
+                lst = lst[:-args[0]]
+            else:
+                lst = lst[:-1]
+    funcs = {"add":add,"remove":remove}
+    funcs[args[0]](args[1],args[2:])
+    return lst
