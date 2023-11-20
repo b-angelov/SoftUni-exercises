@@ -32,9 +32,9 @@ print(food_orders_app)
 ##########MY TESTS#############
 
 # food_orders_map
-print(food_orders_app.register_client("0886035868"))
-print(food_orders_app.add_meals_to_shopping_cart('0886035868', **additional_food))
-print(food_orders_app.finish_order("0886035868"))
+print(food_orders_app.register_client("0880000000"))
+print(food_orders_app.add_meals_to_shopping_cart('0880000000', **additional_food))
+print(food_orders_app.finish_order("0880000000"))
 print(food_orders_app)
 
 print(food_orders_app.register_client("0123456789"))
