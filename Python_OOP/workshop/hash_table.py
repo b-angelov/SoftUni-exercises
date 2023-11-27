@@ -82,8 +82,8 @@ class HashTable:
         return res
 
     # this has been commented out due to task result restrictions
-    def __repr__(self):
-        return '{' + ', '.join(f"{res[0]}: {res[1]}" for res in self.array if res) + '}'
+    #def __repr__(self):
+    #   return '{' + ', '.join(f"{res[0]}: {res[1]}" for res in self.array if res) + '}'
 
     def __bool__(self):
         return any(self.__array)
