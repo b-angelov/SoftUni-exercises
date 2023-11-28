@@ -88,7 +88,7 @@ class HashTable:
 
     def __add__(self, other):
         result = HashTable()
-        set(result.add(key if not i.get(key,None)
+        set(result.add(key if not result.get(key,None)
         else f"{key} second", i.get(key)) for i in [self, other] for key in i.keys if key)
         return result
 
