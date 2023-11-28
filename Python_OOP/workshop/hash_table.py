@@ -3,93 +3,96 @@ class HashTable:
     DEFAULT_TABLE_LENGTH = 4
 
     def __init__(self):
-        self.__table_length = self.DEFAULT_TABLE_LENGTH
         self.__array = [None for _ in range(self.DEFAULT_TABLE_LENGTH)]
+        self.__keys = []
 
     def __len__(self):
         return len(self.__array)
 
+    def __none(self):
+        return None
+
     @property
     def array(self):
-        return self.__array
+        return tuple(self.__array)
 
-    # @property
-    # def __append_array(self):
-    #     return self.__array
-    #
-    # @__append_array.setter
-    # def __append_array(self, value):
-    #     if not isinstance(value, (tuple,list)) or len(value) != 2:
-    #         raise ValueError("Given values are not supported with hash table.")
-    #     if len(self.__array) % (self.DEFAULT_TABLE_LENGTH + 1) == self.DEFAULT_TABLE_LENGTH:
-    #         self.__array.extend(None for _ in range(len(self.__array)))
-    #     first_available_index = next((idx for idx,val in enumerate(self.__array) if val is None))
-    #     self.__array[first_available_index] = tuple(value)
+    @property
+    def keys(self):
+        return tuple(self.__keys)
 
     def hash(self, key):
-        try:
-            first_available_index = next((idx for idx,val in enumerate(self.__array) if val is None or val[0] == key))
-        except StopIteration:
-            if len(self.__array) > self.DEFAULT_TABLE_LENGTH:
-                pass
-            self.__array.extend(None for _ in range(len(self.__array)))
-            first_available_index = next((idx for idx,val in enumerate(self.__array) if val is None or val[0] == key))
-        slot = [None,None]
-        self.__array[first_available_index] = slot
-        return slot
+        first_available_index = self.__get_next_index()
+        hash_value = str(hash(key))
+        self.__setattr__(hash_value, first_available_index)
+        self.__keys.append(key)
+        return hash_value, first_available_index
 
     def add(self, key: str, value: any):
-        slot = self.hash(key)
-        slot[0] = key
-        slot[1] = value
-
-    def get(self, key: str):
+        if value is None:
+            value = self.__none
         try:
-            value = next(value for k,value in self.__array if k == key)
-        except IndexError:
-            raise KeyError("Provided key does not exist in the hash table.")
-        except TypeError:
-            raise StopIteration
-        return value
+            index = self.__getattribute__(str(hash(key)))
+        except AttributeError:
+            index = self.hash(key)[1]
+        self.__array[index] = value
 
-    def __getitem__(self, key):
-        return self.get(key)
+    def get(self, key: str, default_value=KeyError, error_message = ""):
+        if not error_message:
+            error_message = f"Key '{key}' not found in hash table."
+        try:
+            result = self.__getattribute__(str(hash(key)))
+        except AttributeError:
+            if isinstance(default_value(), BaseException):
+                raise default_value(error_message)
+            return default_value
+        result = self.__array[result]
+        if result == self.__none:
+            result = result()
+        return result
+
+
+
+    def __get_next_index(self):
+        try:
+            next_index = next(index for index in range(len(self.__array)) if self.__array[index] is None)
+        except StopIteration:
+            self.__array.extend(None for _ in range(len(self.__array)))
+            next_index = self.__get_next_index()
+        return next_index
 
     def __setitem__(self, key, value):
         self.add(key, value)
 
+    def __getitem__(self, item):
+        return self.get(item)
+
     def __delitem__(self, key):
-        item = next((i for i in self.__array if i and i[0] == key), None)
-        if item:
-            self.__array.remove(item)
-            self.__array.append(None)
-        return item
+        hash_value = str(hash(key))
+        try:
+            index = self.__getattribute__(hash_value)
+        except AttributeError:
+            raise KeyError("Key doesn't exist in hash table.")
+        self.__array[index] = None
+        self.__keys.remove(key)
+        self.__delattr__(hash_value)
 
     def __iter__(self):
         return next(self)
 
     def __next__(self):
-        index = 0
         while True:
-            if index >= len(self.__array) or self.__array[index] is None:
-                index = 0
+            for key in self.__keys:
+                yield self.get(key)
+            else:
                 return
-            yield self.__array[index][0]
-            index += 1
 
     def __add__(self, other):
-        res = HashTable()
-        [res.add(r[0],r[1]) for i in [self.__array, other.array] for r in i if r]
-        return res
-
-    # this has been commented out due to task result restrictions
-    #def __repr__(self):
-    #   return '{' + ', '.join(f"{res[0]}: {res[1]}" for res in self.array if res) + '}'
+        result = HashTable()
+        [result.add(key, i.get(key)) for i in [self, other] for key in i.keys if key]
+        return result
 
     def __bool__(self):
-        return any(self.__array)
-
-
+        return bool(self.keys)
 
 
 
