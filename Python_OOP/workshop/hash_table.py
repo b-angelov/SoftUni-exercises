@@ -28,13 +28,11 @@ class HashTable:
         return hash_value, first_available_index
 
     def add(self, key: str, value: any):
-        if value is None:
-            value = self.__none
         try:
             index = self.__getattribute__(str(hash(key)))
         except AttributeError:
             index = self.hash(key)[1]
-        self.__array[index] = value
+        self.__array[index] = value if value is not None else self.__none
 
     def get(self, key: str, default_value=KeyError, error_message = ""):
         if not error_message:
@@ -80,15 +78,18 @@ class HashTable:
         return next(self)
 
     def __next__(self):
-        while True:
-            for key in self.__keys:
-                yield self.get(key)
-            else:
-                return
+        for key in self.__keys:
+            yield self.get(key)
+        # while True:
+        #     for key in self.__keys:
+        #         yield self.get(key)
+        #     else:
+        #         return
 
     def __add__(self, other):
         result = HashTable()
-        [result.add(key, i.get(key)) for i in [self, other] for key in i.keys if key]
+        set(result.add(key if not i.get(key,None)
+        else f"{key} second", i.get(key)) for i in [self, other] for key in i.keys if key)
         return result
 
     def __bool__(self):
