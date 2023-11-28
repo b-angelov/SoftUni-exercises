@@ -62,6 +62,7 @@ class HashTable:
         item = next((i for i in self.__array if i and i[0] == key), None)
         if item:
             self.__array.remove(item)
+            self.__array.append(None)
         return item
 
     def __iter__(self):
