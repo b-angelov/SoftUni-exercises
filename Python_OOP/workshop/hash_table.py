@@ -40,7 +40,7 @@ class HashTable:
         try:
             result = self.__getattribute__(str(hash(key)))
         except AttributeError:
-            if isinstance(default_value(), BaseException):
+            if callable(default_value) and isinstance(default_value(), BaseException):
                 raise default_value(error_message)
             return default_value
         result = self.__array[result]
@@ -88,12 +88,18 @@ class HashTable:
 
     def __add__(self, other):
         result = HashTable()
-        set(result.add(key if not result.get(key,None)
-        else f"{key} second", i.get(key)) for i in [self, other] for key in i.keys if key)
+        set(result.add(key if not result.get(key,None) else f"{key} second", i.get(key))
+            for i in [self, other] for key in i.keys if key)
         return result
 
     def __bool__(self):
         return bool(self.keys)
+
+    def __str__(self):
+        return str(type(self))
+
+    def __repr__(self):
+        return "{" + ', '.join(f'{key}: {self.get(key)}' for key in self.__keys) + "}"
 
 
 
