@@ -66,7 +66,13 @@ class TestBakery(TestCase):
         self.assertEqual('Table: 51\nType: OutsideTable\nCapacity: 11', self.bakery.get_free_tables_info())
 
     def test_get_total_income(self):
-        self.fail()
+        self.assertEqual('Total income: 0.00lv', self.bakery.get_total_income())
+        self.bakery.add_table("OutsideTable", 51, 11)
+        self.bakery.add_drink("Water", "Spring water", 11, "Waterfall")
+        self.bakery.order_drink(51, "Spring water", "Herbal tea")
+        self.bakery.leave_table(51)
+        self.assertEqual('Total income: 1.50lv', self.bakery.get_total_income())
+
 
     def test_name(self):
         self.fail()
