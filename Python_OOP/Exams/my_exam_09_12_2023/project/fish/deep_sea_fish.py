@@ -7,4 +7,4 @@ class DeepSeaFish(BaseFish):
         super().__init__(name, points, 180)
 
     def fish_details(self):
-        return self._display_details()
+        return f"{self.__class__.__name__}: {self.name} [Points: {self.points}, Time to Catch: {self.time_to_catch} seconds]"

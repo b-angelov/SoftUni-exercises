@@ -3,18 +3,13 @@ from project.divers.base_diver import BaseDiver
 
 class FreeDiver(BaseDiver):
 
-    type_oxygen_level = 120
+    initial_oxygen = 120
 
     def __init__(self, name: str):
-        super().__init__(name, self.type_oxygen_level)
+        super().__init__(name, self.initial_oxygen)
 
     def miss(self, time_to_catch: int):
-        time_to_catch = round(time_to_catch * 0.6)
-        if self.oxygen_level < time_to_catch:
-            self.oxygen_level = 0
-            return
-        self.oxygen_level -= time_to_catch
-
+        self._miss(time_to_catch, 0.6)
 
     def renew_oxy(self):
-        self.oxygen_level = self.type_oxygen_level
+        self._renew_oxygen(self.initial_oxygen)
