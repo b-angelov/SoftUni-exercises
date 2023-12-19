@@ -11,6 +11,6 @@ class ArcticClimber(BaseClimber):
         return self.strength >= 100
 
     def climb(self, peak: BasePeak):
-        reduction = 20 * 2 if peak.dificulty_level == "Extreme" else 20 * 1.5
+        reduction = (20 * 2) if peak.difficulty_level == "Extreme" else (20 * 1.5) if peak.difficulty_level == "Advanced" else 0
         self.strength -= reduction
         self.conquered_peaks.append(peak.name)
