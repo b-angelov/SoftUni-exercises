@@ -1,0 +1,64 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+
+body{
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    max-height: 100vh;
+}
+
+div.viewport{
+    display: block;
+    padding: 0;
+    max-height: 50vh;
+}
+
+section.card{
+    padding: 5em;
+    display: block;
+    text-align: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+img{
+    max-width: 300px;
+    height: auto;
+    box-shadow: 8px 8px 1px #000 inset,
+        0 0 0.4em #000;
+}
+
+
+div:first-child .card{
+    background: rgb(24,90,157);
+    background: linear-gradient(90deg, rgba(24,90,157,1) 0%, rgba(66,205,161,1) 100%);
+}
+
+div section i:before{
+    font-family: "Font Awesome 6 Free", serif;
+    font-style: normal;
+    padding: 0 0;
+    margin: 0;
+    font-weight: 900;
+    color: white;
+    position: relative;
+    display: inline-block;
+    bottom: 1em;
+    right: 2.5em;
+    z-index: 1;
+}
+
+div:first-child section i:before{
+    content: "\f0c1";
+}
+div section i:before{
+    content: "\f005";
+}
+
+
+
+div .card{
+    background: rgb(168,50,121);
+    background: linear-gradient(90deg, rgba(168,50,121,1) 0%, rgba(210,130,18,1) 100%);
+}

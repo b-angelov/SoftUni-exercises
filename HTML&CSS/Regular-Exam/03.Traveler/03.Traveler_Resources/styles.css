@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Infant&display=swap");
+
+:root{
+    --cormorant-font: 16px;
+    --cormorant-h1: 90px;
+    --karla-font: 18px;
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font: var(--karla-font)/1.5 Karla, serif;
+}
+
+body, table, ul{
+    font: inherit;
+}
+
+body{
+    background: url("images/poster.jpg") no-repeat;
+    background-size: 100% auto;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font: var(--cormorant-h1)/1.5 "Cormorant Infant", serif;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+header{
+    background-color: rgb(0,0,0,0.4);
+    color: white;
+}
+
+header .navigation{
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+    padding: 1em 3em;
+}
+
+header .navigation ul{
+    list-style: none outside;
+    display: flex;
+    color:white;
+    justify-content: space-between;
+    align-content: space-between;
+    min-width: 25vw;
+}
+
+figure.logo{
+    width: 100px;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+
+figure.logo img{
+    max-width: 100%;
+}
+
+header article{
+    text-align: center;
+    padding: 8em;
+}
+
+header article > *{
+    padding: 1em;
+}
+
+header article p{
+    display: block;
+    margin: 0 20vw;
+}
+
+main section:nth-child(even){
+    background-color: #e14747;
+    color: white;
+}
+
+main section:nth-child(odd){
+    background-color: #f8f0e9;
+}
+
+main section{
+    padding: 8em;
+    text-align: center;
+}
+
+/*section.cust-testimonial blockquote{*/
+/*    display: block;*/
+/*    padding-left: 40vw;*/
+/*    max-width: 30vh;*/
+/*    border: 1px solid;*/
+/*}*/
+
+section.cust-testimonial{
+    padding: 2em 8em 0 8em;
+}
+
+section.cust-testimonial blockquote{
+    /*max-width: 30vw;*/
+    padding: 0.8em 0 1em 1em;
+    margin: auto;
+    text-align: left;
+    font: var(--cormorant-h1)/1 "Cormorant Infant", serif;
+    font-weight: bold;
+    line-height: 0.8;
+    font-size: 80px;
+    font-style: italic;
+}
+
+section.cust-testimonial h6{
+    font-size: var(--cormorant-font);
+    text-align: left;
+    padding: 0 6em;
+}
+
+section.support{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 3em 8em;
+}
+
+section.support h3, section.support p{
+    font-size: var(--karla-font);
+    max-width: 20vw;
+
+}
+
+section.support h3{
+    font-weight: bold;
+}
+
+section.artwork{
+    display: flex;
+    flex-direction: column;
+    gap: 5em;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    padding: 3em 35vw;
+}
+
+section.artwork figure{
+    max-width: 630px;
+}
+
+section.artwork figure img{
+    width: 100%;
+}
+
+section.artwork h1{
+    font-size: calc(var(--cormorant-h1) - 2em);
+    font-weight: bold;
+    max-width: 30vw;
+    line-height: 1em;
+}
+
+section.artwork p{
+    text-align: left;
+}
+
+section.artwork .buttons{
+    width: 100%;
+}
+
+section.artwork .buttons a{
+    display: block;
+    max-width: 150px;
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+    border-radius: 0.1em;
+    padding: 0.2em;
+}
+
+section.artwork .buttons a{
+    margin-bottom: 4em;
+}
+
+section.artwork a:last-of-type{
+    margin: 0 0 0 50%;
+}
+
+section.guide{
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    padding: 3em 8em;
+}
+
+section.guide p{
+    padding: 0 12vw;
+}
+
+section.guide a{
+    display: block;
+    border-radius: 1.8em;
+    background-color: #fad87a;
+    max-width: 150px;
+    margin-left: 45%;
+    color: black;
+    letter-spacing: -0.01em;
+    line-height: 1.8;
+    font-size: 0.7em;
+    padding: 1em 0.1em;
+    font-weight: 550;
+}
+
+footer{
+    background-color: #352b2a;
+    color: white;
+    font-weight: 100;
+    font-size: 0.8em;
+}
+
+footer article{
+    padding: 3em 6em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 40vw;
+}
+
+footer article p:last-of-type{
+    opacity: 0.1;
+}
+
+footer article .logo{
+    max-width: 40px;
+}

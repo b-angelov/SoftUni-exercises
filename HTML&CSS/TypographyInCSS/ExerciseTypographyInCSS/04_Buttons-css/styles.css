@@ -1,0 +1,43 @@
+@import url("https://use.fontawesome.com/releases/v6.5.0/css/all.css");
+
+
+body, table{
+    font-family:inherit;
+    background-color: #eeeeee;
+}
+
+.button{
+    cursor: pointer;
+    outline: none;
+    background-color: #eee;
+    text-align: center;
+    font-weight: 500;
+}
+
+.button{
+    border:solid;
+    border-radius: 1.5em;
+    margin: 1px 1em;
+    padding: 0.7em 1em;
+}
+
+.fill{
+    color: white;
+    background-color: #333333;
+    border: none;
+}
+
+body div:last-of-type > *::before{
+    content: '\f063 ';
+    font-family: "Font Awesome 6 Free", serif;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+h2{
+    padding-left: 1em;
+}
+
+.hover:hover{
+    background-color: green;
+}

@@ -1,0 +1,89 @@
+html {
+    line-height: 1.5;
+    font-size: 16px;
+    font-family: Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, serif;
+    font-weight: 300;
+    line-height: inherit;
+}
+
+body {
+    padding: 5em;
+}
+
+article {
+    margin: 1em 0;
+}
+
+article p {
+    /*min-width: 63ch;*/
+}
+
+article h2 {
+    font-family: inherit;
+}
+
+ul li, ol li {
+    margin-left: 1em;
+}
+
+ul {
+    list-style: square;
+    padding: 1em;
+}
+
+ul ul {
+    list-style: disc;
+}
+
+ul ul ul {
+    list-style: circle;
+}
+
+blockquote {
+    border-left: solid rgb(221, 221, 221);
+    font-style: italic;
+    padding: 1em;
+}
+
+blockquote p:nth-child(3){
+    text-align: right;
+}
+
+table{
+    width: 100%;
+    border-spacing: 0px;
+    table-layout: fixed;
+    line-height: inherit;
+}
+
+table thead tr{
+    background-color: #ccc;
+    font-weight: bold;
+}
+
+table td{
+    padding: 0.4em;
+}
+
+table thead td{
+    border-style: none;
+}
+
+table td{
+    border: solid 1px #ccc;
+}
+
+table tr{
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even){
+    background-color: #fff;
+}
+
+footer{
+    padding: 1em 0;
+}

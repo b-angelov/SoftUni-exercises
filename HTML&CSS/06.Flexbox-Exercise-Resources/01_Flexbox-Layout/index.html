@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox Layout</title>
+    <style>
+        body{
+            background-color: #eee;
+            padding: 5rem;
+            display: flex;
+            flex-wrap: wrap;
+            text-transform: uppercase;
+            gap: 1em;
+        }
+        body *{
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 0.4rem;
+            color: #000;
+            padding-bottom: 10em;
+        }
+        header, footer{
+            flex-basis: 100%;
+        }
+        main{
+            flex: 8 1 40rem;
+
+        }
+        aside{
+            flex: 2 1 20rem;
+        }
+    </style>
+</head>
+<body>
+<header>header</header>
+<main>main</main>
+<aside>aside</aside>
+<footer>footer</footer>
+</body>
+</html>
