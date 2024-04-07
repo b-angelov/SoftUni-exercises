@@ -1,0 +1,8 @@
+__pycache__
+.idea
+*.doc
+*.docx
+*.pdf
+*.zip
+tests
+node_modules
