@@ -1,7 +1,7 @@
 function logics() {
     const repositoryApiUrl = "https://api.github.com/repos/b-angelov/softuni-exercises/contents"
     const navigationElement = document.querySelector("article.navigation .navigation-main")
-    const mainDir = getDirectoryTree()
+    let mainDir = []
 
     const availableLanguages = {
         python: {
@@ -47,7 +47,8 @@ function logics() {
         navigationElement.append(elements.item)
     }
 
-    function loadMainNav(){
+    async function loadMainNav(){
+        mainDir = await getDirectoryTree()
         mainDir.forEach(item=>{
             const itemType = item.name.match(/python|js|javascript|css|sql/gmi)
             console.log(itemType)
