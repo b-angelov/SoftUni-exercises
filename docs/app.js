@@ -49,10 +49,16 @@ function logics() {
 
     async function loadMainNav(){
         mainDir = await getDirectoryTree()
+        const menuObj = {}
         mainDir.forEach(item=>{
             const itemType = item.name.match(/python|js|javascript|css|sql/gmi)
-            console.log(itemType)
+            if (itemType && itemType.length){
+                const type = itemType[0].toLowerCase()
+                if(!menuObj.hasOwnProperty(type)) menuObj[type] = []
+                menuObj[type].append(item)
+            }
         })
+        console.log(menuObj)
     }
 
     console.log(mainDir)
