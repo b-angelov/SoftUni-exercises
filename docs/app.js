@@ -31,6 +31,7 @@ function logics() {
     async function getDirectoryTree(subPath = "") {
         dirTree = await fetch(`${repositoryApiUrl}/${subPath}`)
         dirTree = await dirTree.json()
+        return dirTree
     }
 
     function mainNav(language){
