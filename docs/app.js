@@ -6,5 +6,6 @@ function logics(){
         dirTree = await dirTree.json()
         console.log(dirTree)
     }
+    getDirectoryTree()
 }
 logics()
