@@ -1,30 +1,37 @@
 function logics() {
     const repositoryApiUrl = "https://api.github.com/repos/b-angelov/softuni-exercises/contents"
-    const navigationElement = document.querySelector("article.navigation .navigation-main")
+    const navigationElement = document.querySelector("article.navigation .main-nav")
     let mainDir = []
 
     const availableLanguages = {
         python: {
-            fontIcon: "",
+            fontIconGlyph: "",
+            fontIconClass:"fa-brands fa-python"
         },
         js: {
-            fontIcon: ""
+            fontIconGlyph: "",
+            fontIconClass:"fa-brands fa-js"
         },
         javascript: ["js"],
         html: {
-            fontIcon: ""
+            fontIconGlyph: "",
+            fontIconClass:"fa-brands fa-html5"
         },
         css: {
-            fontIcon: ""
+            fontIconGlyph: "",
+            fontIconClass:"fa-brands fa-css3-alt"
         },
         db: {
-            fontIcon: ""
+            fontIconGlyph: "",
+            fontIconClass:"fa-solid fa-database"
         },
         sql: {
-            fontIcon: ""
+            fontIconGlyph: "",
+            fontIconClass:"fa-solid fa-database"
         },
         postgre: {
-            fontIcon: ""
+            fontIconGlyph: "",
+            fontIconClass:"fa-solid fa-database"
         }
     }
 
@@ -34,17 +41,22 @@ function logics() {
         return dirTree
     }
 
-    function mainNav(language){
+    function mainNavItem(language){
+        console.log(language)
         const elements = Object.entries({
             item:{tag:"li",options:{className:`language ${language.toLowerCase()}`}},
-            img:{tag:"i",options:{className:`language-icon ${language}-icon`,textContent:availableLanguages[language].fontIcon}}
+            figure:{tag:"figure",options:{}},
+            img:{tag:"i",options:{className:`language-icon ${language}-icon ${availableLanguages[language].fontIconClass}`}}
         }).reduce((prev,[name,{tag,options}])=>{
             prev[name] = Object.assign(document.createElement(tag),options)
             return prev
         },{})
 
-        elements.item.append(elements.img)
+        elements.item.append(elements.figure)
+        elements.figure.append(elements.img)
         navigationElement.append(elements.item)
+        elements.item.addEventListener("mouseenter",e=>elements.figure.classList.add("hover-zoom"))
+        elements.item.addEventListener("mouseleave",e=>elements.figure.classList.remove("hover-zoom"))
     }
 
     async function loadMainNav(){
@@ -52,13 +64,15 @@ function logics() {
         const menuObj = {}
         mainDir.forEach(item=>{
             const itemType = item.name.match(/python|js|javascript|css|sql/gmi)
+            console.log(itemType)
             if (itemType && itemType.length){
                 const type = itemType[0].toLowerCase()
                 if(!menuObj.hasOwnProperty(type)) menuObj[type] = []
-                menuObj[type].append(item)
+                menuObj[type].push(item)
             }
         })
-        console.log(menuObj)
+        mainDir = menuObj
+        Object.keys(mainDir).forEach(language=>mainNavItem(language))
     }
 
     console.log(mainDir)

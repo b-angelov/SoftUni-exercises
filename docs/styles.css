@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+html {
+    font: normal 18px/1.5em "Libre Baskervill", serif;
+}
+body,ul,table,figure{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f8f7f8;
+}
+
+body > h1:first-of-type{
+    display:none;
+}
+
+ul.main-nav{
+    padding-top: 0.4em;
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    font-size: 5em;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    background: rgb(249,244,247);
+    background: linear-gradient(0deg, rgba(249,244,247,0.6) 0%, rgba(255,253,251,0.2) 100%);
+    gap: 0.4em;
+}
+
+ul.main-nav li{
+    text-decoration: none;
+    padding: 0 0em;
+    flex-grow: 0;
+    border: solid 1px rgba(1, 9, 35, 0.03);
+    border-radius: 0.3em;
+    overflow: hidden;
+    box-shadow: rgba(237, 235, 235, 0.53) -0.1em -0.1em 0.04em inset;
+
+}
+ ul.main-nav li figure{
+     /*border: solid 2px;*/
+     display:block;
+     text-align: center;
+     position: relative;
+     transition: 0.3s;
+     padding:0.2em;
+ }
+
+.hover-zoom{
+    background-color: #ede9e3;
+    font-size: 1.2em;
+    box-shadow: rgba(216, 214, 214, 0.36) 0.1em 0.1em 0.04em inset;
+}
+
+.python-icon{
+    color:#356c9b;
+}
+
+.css-icon {
+    color: #e8d44d;
+}
+
+.js-icon{
+    color: #BDCE2E;
+}
