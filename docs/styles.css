@@ -33,13 +33,16 @@ ul.main-nav{
 }
 
 ul.main-nav li{
+    background-color: #ede9e3;
     text-decoration: none;
     padding: 0 0em;
     flex-grow: 0;
     border: solid 1px rgba(1, 9, 35, 0.03);
     border-radius: 0.3em;
     overflow: hidden;
-    box-shadow: rgba(237, 235, 235, 0.53) -0.1em -0.1em 0.04em inset;
+    /*box-shadow: rgba(237, 235, 235, 0.53) -0.1em -0.1em 0.04em inset;*/
+    box-shadow: rgba(216, 214, 214, 0.36) 0.1em 0.1em 0.04em inset;
+
 
 }
  ul.main-nav li figure{
@@ -52,9 +55,12 @@ ul.main-nav li{
  }
 
 .hover-zoom{
-    background-color: #ede9e3;
+    /*background-color: #ede9e3;*/
+    background-color: rgb(255,255,255,0.7);
     font-size: 1.2em;
-    box-shadow: rgba(216, 214, 214, 0.36) 0.1em 0.1em 0.04em inset;
+    /*box-shadow: rgba(216, 214, 214, 0.36) 0.1em 0.1em 0.04em inset;*/
+    box-shadow: rgba(237, 235, 235, 0.53) -0.1em -0.1em 0.04em inset;
+
 }
 
 .python-icon{
