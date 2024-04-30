@@ -1,7 +1,9 @@
 function logics() {
     const repositoryApiUrl = "https://api.github.com/repos/b-angelov/softuni-exercises/contents"
     const navigationElement = document.querySelector("article.navigation .main-nav")
+    const [topicsElement,topicsTitle] = document.querySelectorAll("article.topics .topic-list, article.topics .topic-list > *:first-child")
     let mainDir = []
+    const themes = {}
 
     const availableLanguages = {
         python: {
@@ -35,14 +37,13 @@ function logics() {
         }
     }
 
-    async function getDirectoryTree(subPath = "") {
-        dirTree = await fetch(`${repositoryApiUrl}/${subPath}`)
+    async function getDirectoryTree(subPath = repositoryApiUrl) {
+        dirTree = await fetch(subPath)
         dirTree = await dirTree.json()
         return dirTree
     }
 
     function mainNavItem(language){
-        console.log(language)
         const elements = Object.entries({
             item:{tag:"li",options:{className:`language ${language.toLowerCase()}`}},
             figure:{tag:"figure",options:{}},
@@ -57,6 +58,7 @@ function logics() {
         navigationElement.append(elements.item)
         elements.item.addEventListener("mouseenter",e=>elements.figure.classList.add("hover-zoom"))
         elements.item.addEventListener("mouseleave",e=>elements.figure.classList.remove("hover-zoom"))
+        elements.item.addEventListener("click",e=>loadTopics(language))
     }
 
     async function loadMainNav(){
@@ -64,18 +66,28 @@ function logics() {
         const menuObj = {}
         mainDir.forEach(item=>{
             const itemType = item.name.match(/python|js|javascript|css|sql/gmi)
-            console.log(itemType)
             if (itemType && itemType.length){
                 const type = itemType[0].toLowerCase()
                 if(!menuObj.hasOwnProperty(type)) menuObj[type] = []
                 menuObj[type].push(item)
+                if(item.type === "dir") getDirectoryTree(item.url).then(response=> {
+                    if (!themes.hasOwnProperty(type)) themes[type] = [];
+                    themes[type].push(response)
+                })
             }
         })
         mainDir = menuObj
         Object.keys(mainDir).forEach(language=>mainNavItem(language))
     }
 
+    function loadTopics(language){
+        const topics = themes[language]
+        if(!topics) return
+        topicsTitle.style.display = "inline"
+    }
+
     console.log(mainDir)
+    console.log(themes)
     loadMainNav()
 }
 
