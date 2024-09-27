@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+	<div class="container">
+        <div class="col-9">
+
+            <!-- Start Searchbar Form -->
+            <form class="searchbar" method="post">
+                <input type="text" placeholder="Search by pet name...">
+                <button>
+                    <img src="{% static 'images/search.png' %}" height="18" alt="img2">
+                </button>
+            </form>
+            <!-- End Searchbar Form -->
+
+            <!-- Start Pet Photos Post Section -->
+            {% for photo in photos %}
+                {% with url|add:"/"|add:photo.id|add:"/" as photo_url %}
+                    {%  include 'common/pet-posts.html' with location=photo.location tagged_pets=photo.get_tagged_pets publication_date=photo.date_of_publication pk=photo.pk url=photo.photo.url likes=photo.like_set.count photo_id=photo.id  %}
+                {%  endwith %}
+            {% endfor %}
+            
+            <!-- End Pet Photos Post Section -->
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load add_markdown %}
+
+{% block main_content %}
+	<div class="container">
+        <div class="post centered">
+            <h2>{{ article.title }}</h2>
+            <div class="content">
+                {{ article.content|markdown }}
+                <div class="back left">
+                    <button class="back-btn" onclick="window.location.replace(document.referrer + '#{{ article.title|slugify }}')"><i class="ai-arrow-back-thick-fill"></i> Back</button>
+                </div>
+                <div class="post-meta">
+                    <p>Created By:
+                        {{ article.author }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="{%   static '/css/posts.css' %}">
+{% endblock %}

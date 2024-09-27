@@ -1,0 +1,95 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    background-color: #f3f0f0;
+    margin: 0;
+    padding: 0;
+    background-attachment: fixed;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.no-posts {
+    text-align: center;
+}
+
+.posts {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post h2 {
+    margin: 0;
+    color: #555;
+}
+
+.post p {
+    color: #666;
+}
+
+.post-meta {
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+    font-size: 0.9em;
+    color: #999;
+}
+
+.centered{
+    text-align:center;
+    margin-top: 40vh;
+    position: relative;
+}
+
+.a-ordinary{
+    text-decoration: none;
+    color:inherit;
+}
+
+.left{
+    text-align:left;
+    position: absolute;
+    bottom:1em;
+    left:1em;
+}
+
+.back-btn{
+    color: #07063f;
+    font-weight: 600;
+    min-width: 5rem;
+    min-height:1.42rem;
+    background-color: #f3f0f0;
+    border: solid 1px #c6c6df;
+    border-radius: 1em;
+    box-shadow: 0.1em 0.3em 0.2em 0.1em #333333;
+    transition: all ease-in-out;
+    transition-duration: 121ms;
+}
+
+.back-btn:active, .back-btn:hover{
+    background-color: #05043e;
+    color: #c5baba;
+}
+
+.back-btn:active{
+    transform: translateY(2px);
+}

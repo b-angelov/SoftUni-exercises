@@ -1,0 +1,27 @@
+{% load static %}
+    <div class="comments">
+                        <div class="top">
+    <div class="userDetails">
+        <div class="comment-data">
+            <div class="profilepic">
+                <div class="profile_img">
+                    <div class="image">
+                        <!-- User Profile Image -->
+                        <img src="{% static 'images/person.png' %}" alt="img8">
+                    </div>
+                </div>
+            </div>
+            <p>
+                <!-- Link to User Profile Details Page-->
+                <!-- User First and/or Last Name or username-->
+                <a href="">{{ user_names }}</a>
+                <!-- User Comment -->
+            </p>
+            
+            
+        </div>
+        <div>{{ comment }}</div>
+        <span>{{ publication_time|date:'M. d. Y, g:i a' }}</span>
+    </div>
+                        </div>
+    </div>

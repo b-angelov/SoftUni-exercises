@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{%  load static %}
+{%  load add_markdown %}
+
+
+{% block custom_css %}
+	<link rel="stylesheet" href="{%   static '/css/posts.css' %}">
+{% endblock %}
+
+{%  block main_content %}
+    <div class="container">
+        <div class="posts">
+            {% for post in posts %}
+                <a href="{%  url 'post_details' pk=post.id title=post.title|slugify %}" class="a-ordinary">
+                    <div class="post" id="{{ post.title|slugify }}">
+                        <h2>{{ post.title }}</h2>
+                            {{ post.content|truncatechars:50|markdown }}
+                        <div class="post-meta">
+                            <p>Created by: ({{ post.author }}): {{ post.author.first_name }} {{ post.author.last_name }} on {{ post.created_at|date:'D: d-M-Y' }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <div>No posts available!</div>
+            {%  endfor %}
+        </div>
+    </div>
+{% endblock %}

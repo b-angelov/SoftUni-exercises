@@ -1,0 +1,18 @@
+{%  extends 'base.html' %}
+{%  load static %}
+{%  load add_markdown %}
+
+
+{% block custom_css %}
+    <link rel="stylesheet" href="{%   static '/css/posts.css' %}">
+{% endblock %}
+
+{%  block main_content %}
+    <div class="container">
+        <div class="posts">
+            <div class="post centered" >
+                {{ article.content|markdown }}
+            </div>
+        </div>
+    </div>
+{%  endblock %}
