@@ -4,3 +4,4 @@ venv
 *.doc
 *.docx
 *.pdf
+.env
