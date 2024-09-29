@@ -1,6 +1,8 @@
 from django.apps import apps
 from django.shortcuts import render, redirect
 
+
+
 # Create your views here.
 
 def photo_add(request):
@@ -19,15 +21,20 @@ def photo_add(request):
     return render(request, 'photos/photo-add-page.html', context)
 
 def photo_details(request, pk):
+    from Petstagram.common.forms import CommentForm
+
+
     Photo = apps.get_model('photos', 'Photo')
     photo = Photo.get_photo_by_id(pk)
     comments = photo.comment_set.all()
     likes = photo.like_set.count()
+    comment_form = CommentForm(request.POST or None)
 
     context = {
         'photo':photo,
         'comments':comments,
         'likes':likes,
+        "comment_form":comment_form,
     }
 
     return render(request, 'photos/photo-details-page.html', context)
