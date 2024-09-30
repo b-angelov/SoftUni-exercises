@@ -1,12 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load page_url %}
+{% block body_scripts %}
+	<script>
+        
+        function submit_search(e){
+            let timeout = null
+            
+            let form = document.querySelector(".searchbar")
+            let input = form.querySelector('input')
+            input.focus()
+            input.setSelectionRange(input.value.length, input.value.length)
+            
+            input.addEventListener('input',(e)=>{
+                clearTimeout(timeout)
+                timeout = setTimeout(()=>{
+                    form.submit()
+                }, 1000)
+            })
+        }
+        submit_search()
+    </script>
+{% endblock %}
 {% block main_content %}
 	<div class="container">
         <div class="col-9">
 
             <!-- Start Searchbar Form -->
-            <form class="searchbar" method="post">
-                <input type="text" placeholder="Search by pet name...">
+            <form class="searchbar" method="get">
+                {{ search_form.pet_name }}
                 <button>
                     <img src="{% static 'images/search.png' %}" height="18" alt="img2">
                 </button>
@@ -16,11 +38,51 @@
             <!-- Start Pet Photos Post Section -->
             {% for photo in photos %}
                 {% with url|add:"/"|add:photo.id|add:"/" as photo_url %}
-                    {%  include 'common/pet-posts.html' with location=photo.location tagged_pets=photo.get_tagged_pets publication_date=photo.date_of_publication pk=photo.pk url=photo.photo.url likes=photo.like_set.count photo_id=photo.id  %}
+                    {%  include 'common/pet-posts.html' with location=photo.location tagged_pets=photo.get_tagged_pets publication_date=photo.date_of_publication pk=photo.pk url=photo.photo.url likes=photo.like_set.count photo_id=photo.id  comment_form=comment_form %}
                 {%  endwith %}
             {% endfor %}
             
             <!-- End Pet Photos Post Section -->
+        
+            <!-- PAGINATOR star -->
+            <div class="pagination">
+                <span class="current">
+                    {% firstof photos.number page_obj.number as page_number %}
+                    {% firstof photos.paginator.num_pages page_obj.paginator.num_pages as page_count %}
+                    Page {{ page_number }} of {{ page_count }}
+                </span>
+                <span class="step-links-buttons">
+                    {% firstof photos.has_previous page_obj.has_previous None as has_previous %}
+                    {% firstof photos.has_next page_obj.has_next None as has_next %}
+                    {% if has_previous and has_next %}
+                            {% firstof photos.previous_page_number page_obj.previous_page_number None as previous %}
+                            {% firstof photos.next_page_number page_obj.next_page_number None as next %}
+                            
+                            <a href="{% page_url previous search_string %}">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                            <a href="{% page_url next search_string %}">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                    {% elif has_previous %}
+                            {% firstof photos.previous_page_number page_obj.previous_page_number None as previous %}
+                            <a href="{% page_url previous search_string %}">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                    {% elif has_next %}
+                    {% firstof photos.next_page_number page_obj.next_page_number None as next %}
+                    	    <a href="{% page_url next search_string %}">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                    {% endif %} 
+                </span>
+            </div>
+            <!-- PAGINATOR ends -->
+        
+            <!-- IF NOT Photos Show No Post Image -->
+            {% if not photos %}
+                <img class="no-posts" src="{% static 'images/no_posts.png' %}" alt="no posts image">
+            {% endif %}
 
         </div>
     </div>

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from parso.python.tree import Class
 
 
@@ -25,6 +25,11 @@ class ClassImporter:
     def CommentForm(self):
         from Petstagram.common.forms import CommentForm
         return CommentForm
+
+    @property
+    def PetFormDisabled(self):
+        from Petstagram.pets.forms import PetFormDisabled
+        return PetFormDisabled
 
 
 
@@ -69,6 +74,29 @@ class EditPetView(UpdateView):
                 'pet_slug': slugify(self.object.slug),
             }
         )
+
+
+class DeletePetView(DeleteView):
+    model = ClassImporter.Pet
+    FORM = ClassImporter.PetFormDisabled
+    template_name = 'pets/pet-delete-page.html'
+    context_object_name = 'pet'
+    success_url = reverse_lazy('profile_page', kwargs={"pk" : 1})
+
+    def get_object(self, queryset=None):
+        return self.model.objects.get(slug=self.kwargs["pet_slug"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.FORM(initial=self.object.__dict__)
+        return context
+
+    def delete(self, request, *args, **kwargs):
+        pet = self.get_object()
+        pet.delete()
+        return redirect(self.success_url)
+
+
 
 
 def pet_add(request):

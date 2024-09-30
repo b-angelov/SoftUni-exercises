@@ -40,7 +40,7 @@
 
             <!-- IF Photos Start Pet Photos Post Section -->
             {% for photo in pet_photos %}
-                {% include 'common/pet-posts.html' with location=photo.location tagged_pets=photo.get_tagged_pets publication_date=photo.date_of_publication pk=photo.pk url=photo.photo.url likes=photo.like_set.count photo_id=photo.id %}
+                {% include 'common/pet-posts.html' with location=photo.location tagged_pets=photo.get_tagged_pets publication_date=photo.date_of_publication pk=photo.pk url=photo.photo.url likes=photo.like_set.count photo_id=photo.id comment_form=comment_form %}
             {%  endfor %}
             <!-- IF Photos End Pet Photos Post Section -->
 
