@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+	<!-- profile details section -->
+      <section id="recipe-details">
+        <h1>Profile Details</h1>
+        <div class="info-section">
+          <div class="recipe-header">
+            <!-- default profile image -->
+            <!-- if the user is not a chef - a default image - no_chef_img.png -->
+            <!-- if the user is a chef - a default image - chef_img.png -->
+
+            <img
+              class="recipe-img"
+              {% if profile.chef %}
+                  {% static 'images/chef_img.png' as prof_img %}
+              {% else %}
+                  {% static 'images/no_chef_img.png' as prof_img %}
+              {% endif %}
+              src="{{ prof_img }}"
+              alt="profile-image"
+            />
+
+            <!-- profile full name -->
+            <h1>{{ profile.profile_full_name }}</h1>
+
+            <!-- profile nickname -->
+            <p class="description">Nickname: {{ profile.nickname }}</p>
+
+            <!-- profile bio -->
+            <!-- if no profile bio - display 'N/A' -->
+
+            <p class="description">Bio: {% firstof profile.bio 'N/A' %}</p>
+
+            <!-- total number of published recipes -->
+            <p class="description">Published recipes: {{ profile.recipe_set.count }}</p>
+
+            <!-- Edit/Delete buttons -->
+            <div class="buttons">
+              <a href="{% url 'edit_profile' %}" class="edit-button">Edit</a>
+              <a href="{% url 'delete_profile' %}" class="delete-button">Delete</a>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}

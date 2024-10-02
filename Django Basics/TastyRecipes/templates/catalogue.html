@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+	<!-- Display paragraph: If there are no recipes yet-->
+    {% if not recipes %}
+      <p class="no-articles">There are currently no recipes available.</p>
+    {% endif %} 
+    
+    {% for recipe in recipes %}
+      <!-- Display a card with information about each recipe (if any)-->
+      <section id="catalogue">
+        <!-- first recipe-->
+        <div class="recipe-card">
+          <div class="image-wrap">
+            <!-- recipe image -->
+            <!-- if there is no image url provided, display the default recipe image -->
+
+            <img
+              class="recipe-img"
+              {% static 'images/default_recipe_img.png' as def_img %}
+              src="{%  firstof recipe.image_url def_img %}"
+              alt="recipe image"
+            />
+          </div>
+          <!-- recipe title -->
+          <h3>{{ recipe.title }}</h3>
+          <!-- recipe cooking time -->
+          <h1>Cooking time: {{ recipe.cooking_time }}min.</h1>
+          <!-- recipe instructions -->
+          <h1>{{ recipe.instructions|truncatechars:35 }}</h1>
+          <div class="details-buttons">
+            <!-- recipe details button -->
+            <a href="{% url 'recipe_details' recipe_id=recipe.pk %}" class="details-btn">Details</a>
+          </div>
+        </div>
+          {% endfor %}
+      </section>
+{% endblock %}
