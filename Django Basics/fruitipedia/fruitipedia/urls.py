@@ -17,8 +17,15 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+import fruitipedia
+from fruitipedia.fruits.views import DashboardView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('fruitipedia.common.urls')),
+    path('dashboard/', DashboardView.as_view(), name='dashboard_page'),
+    path('fruit/', include('fruitipedia.fruits.urls')),
+    path('profile/', include('fruitipedia.accounts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

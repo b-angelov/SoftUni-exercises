@@ -1,0 +1,36 @@
+{% load static %}
+{% load profile %}
+{% profile as profile %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>Fruitipedia</title>
+    {% block head_content %}
+    	
+    {% endblock %}
+</head>
+<body>
+<div id="wrapper">
+    <header>
+       
+
+        {% include 'common/navigation.html' %}
+    </header>
+
+    {% block main_content %}
+    	
+    {% endblock %}
+    </div>
+<!-- footer -->
+    <footer>
+      <p>@Fruitipedia - SoftUni Team 2023. All rights reserved.</p>
+    </footer>
+    {% block body_scripts %}
+    	
+    {% endblock %}
+  </body>
+</html>
