@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, DeleteView
 
 from my_music_app.accounts.models import Profile
@@ -18,5 +19,5 @@ class ProfileDetailsView(ProfileBaseMixin,DetailView):
 class ProfileDeleteView(ProfileBaseMixin,DeleteView):
     model = Profile
     template_name = 'accounts/profile-delete.html'
-
+    success_url = reverse_lazy('home_page')
 
