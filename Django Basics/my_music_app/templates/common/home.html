@@ -1,0 +1,9 @@
+{% extends 'common/base.html' %}
+
+{% block main_content %}
+    {% if profile %}
+        {% include 'common/home-with-profile.html' %}
+    {% else %}
+        {% include 'common/home-no-profile.html' with form=form %}
+    {% endif %}
+{% endblock %}

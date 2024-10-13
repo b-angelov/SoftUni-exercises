@@ -1,0 +1,51 @@
+{% load static %}
+{% load profile %}
+
+{% profile as profile %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Music App</title>
+    <!-- Static Load -->
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+      {% block head_content %}
+      	
+      {% endblock %}
+  </head>
+
+  <body>
+    <div id="box">
+      <!-- Navigation Bar -->
+      <header>
+        <nav>
+          <img src="{% static '/images/headphones.png' %}" alt="headphones" />
+          <a href="{% url 'home_page' %}">Home</a>
+          <ul></ul>
+          <ul>
+              {% if profile %}
+              	
+            <!--Only for user with created profile-->
+            <li><a href="{% url 'album_add' %}">Create Album</a></li>
+            <li><a href="{% url 'profile_details' %}">Profile</a></li>
+              {% endif %} 
+              
+          </ul>
+        </nav>
+      </header>
+      <!-- End Navigation Bar -->
+
+      {% block main_content %}
+      	
+      {% endblock %}
+      <!-- Footer -->
+      <footer>
+        <div>&copy;SoftUni Team 2024. All rights reserved.</div>
+      </footer>
+      <!-- End Footer -->
+    </div>
+  {% block body_scripts %}
+  	
+  {% endblock %}
+  </body>
+</html>
