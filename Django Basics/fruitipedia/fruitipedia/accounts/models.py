@@ -51,3 +51,9 @@ class Profile(models.Model):
     def get_last_profile():
         return Profile.objects.last()
 
+    def get_full_name(self):
+        return ' '.join(filter(lambda x: x, (self.first_name,self.last_name,)))
+
+    def get_posts_count(self):
+        return self.fruit_set.count()
+
