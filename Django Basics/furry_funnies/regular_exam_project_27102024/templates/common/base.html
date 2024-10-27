@@ -1,0 +1,29 @@
+{% load static %}
+{% load get_profile %}
+{% profile as profile %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}" />
+    <title>FurryFunnies</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        {% include 'common/nav.html' %}
+      </header>
+
+      {% block main_content %}
+      	
+      {% endblock %}
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <p>&copy; 2024 FurryFunnies by SoftUni Team. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'common/base.html' %}
+
+{% block main_content %}
+	<main>
+        <!-- Post Details -->
+        <section id="details">
+          <div id="details-wrapper">
+            <h2>Post Details</h2>
+            <!-- post image -->
+            <img
+              id="details-img"
+              src="{{ post.image_url }}"
+              alt="{{ post.title }}"
+            />
+            <!-- post title -->
+            <p id="details-title">{{ post.title }}</p>
+            <div id="info-wrapper">
+              <div id="details-description">
+                <!-- post content -->
+                <p>{{ post.content }}</p>
+              </div>
+
+              <!--Edit and Delete buttons -->
+              <div id="action-buttons">
+                <a href="{% url 'post-edit' post.pk %}" id="edit-btn">Edit</a>
+                <a href="{% url 'post-delete' post.pk %}" id="delete-btn">Delete</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+{% endblock %}

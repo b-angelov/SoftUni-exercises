@@ -1,0 +1,21 @@
+{% extends 'common/base.html' %}
+
+{% block main_content %}
+	<main>
+        <!-- Create Author's Profile Form (Only if no author's profile has been created) -->
+        <section id="register">
+          <div class="form">
+            <h2>Create Author's Profile</h2>
+
+            <form class="register-form" method="post" action="">
+                {% csrf_token %}
+                {{ form.as_div }}
+              
+
+              <!-- form button -->
+              <button type="submit">Create</button>
+            </form>
+          </div>
+        </section>
+      </main>
+{% endblock %}
